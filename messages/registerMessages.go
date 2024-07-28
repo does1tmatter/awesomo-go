@@ -1,6 +1,9 @@
 package messages
 
 import (
+	"fmt"
+	"log"
+
 	"github.com/bwmarrin/discordgo"
 )
 
@@ -23,4 +26,13 @@ func GetMessage(key string) func(*discordgo.Session, *discordgo.MessageCreate) {
 	}
 
 	return callback
+}
+
+func ReplyWith(d *discordgo.Session, content string, m *discordgo.MessageReference) {
+	message, err := d.ChannelMessageSendReply(m.ChannelID, content, m)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("Responded: %v\n\n", message.Content)
 }

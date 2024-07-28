@@ -1,11 +1,13 @@
 package messages
 
-import "github.com/bwmarrin/discordgo"
+import (
+	"github.com/bwmarrin/discordgo"
+)
 
 func init() {
 	AddMessage("test", handleTest)
 }
 
 func handleTest(d *discordgo.Session, m *discordgo.MessageCreate) {
-	d.ChannelMessageSend(m.ChannelID, "ayo")
+	ReplyWith(d, "ayo", m.Reference())
 }
