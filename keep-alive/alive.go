@@ -22,5 +22,6 @@ func Start(errs ...error) {
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 	<-sc
+
 	fmt.Println("\nShutting down...")
 }
